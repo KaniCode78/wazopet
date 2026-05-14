@@ -14,6 +14,8 @@
   }
 
   // Waitlist
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbywXE0HVc2ZpYc4Xdh6ZKoxe4WUyr77x2BwBW4rfIMcW6Ab0e61IIS_FwIrmltQGE1Shw/exec';
+
   function handleWaitlist(inputId) {
     const input = document.getElementById(inputId);
     const email = input.value.trim();
@@ -24,7 +26,14 @@
       setTimeout(() => input.style.boxShadow = '', 2000);
       return;
     }
-    // Show success
+
+    fetch(SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, origin: inputId }),
+    });
+
     if (inputId === 'ctaEmail') {
       document.getElementById('ctaForm').style.display = 'none';
       document.getElementById('successMsg').style.display = 'block';
