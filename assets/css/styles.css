@@ -1236,10 +1236,21 @@
 
   .cta-form {
     display: flex;
+    flex-direction: column;
     gap: 12px;
     max-width: 480px;
     margin: 0 auto;
-    flex-wrap: wrap;
+  }
+
+  .cta-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .cta-fields .cta-input:first-child,
+  .cta-fields .cta-select {
+    grid-column: 1 / -1;
   }
 
   .cta-input {
@@ -1259,6 +1270,16 @@
 
   .cta-input::placeholder { color: rgba(255,255,255,0.5); }
   .cta-input:focus { background: rgba(255,255,255,0.22); }
+
+  .cta-select {
+    color: rgba(255,255,255,0.85);
+    cursor: pointer;
+  }
+
+  .cta-select option {
+    background: var(--primary);
+    color: #fff;
+  }
 
   .btn-white {
     background: #fff;

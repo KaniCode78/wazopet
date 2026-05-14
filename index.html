@@ -53,7 +53,7 @@
       <p class="hero-sub">El historial clínico inteligente para tu mascota. Vacunas, citas, medicamentos, alertas y código QR de identificación. Todo lo que tu veterinario necesita, en tu bolsillo.</p>
       <div class="hero-form" id="heroForm">
         <input type="email" class="hero-input" id="heroEmail" placeholder="tu@correo.com" />
-        <button class="btn-primary" onclick="handleWaitlist('heroEmail')">Quiero acceso anticipado</button>
+        <button class="btn-primary" onclick="handleWaitlistHero()">Quiero acceso anticipado</button>
       </div>
       <p class="hero-note">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -559,8 +559,21 @@
     <h2 class="cta-title">Tu mascota merece lo mejor.<br>Empieza hoy.</h2>
     <p class="cta-sub">Únete a más de 2,000 familias colombianas que ya esperan WazoPet. Los primeros en registrarse tendrán acceso anticipado y beneficios exclusivos.</p>
     <div class="cta-form" id="ctaForm">
-      <input type="email" class="cta-input" id="ctaEmail" placeholder="tu@correo.com" />
-      <button class="btn-white" onclick="handleWaitlist('ctaEmail')">Unirme a la lista</button>
+      <div class="cta-fields">
+        <input type="text"  class="cta-input" id="ctaNombre"  placeholder="Tu nombre" />
+        <input type="email" class="cta-input" id="ctaEmail"   placeholder="tu@correo.com" />
+        <input type="text"  class="cta-input" id="ctaMascota" placeholder="Nombre de tu mascota" />
+        <input type="text"  class="cta-input" id="ctaCiudad"  placeholder="Ciudad" />
+        <select class="cta-input cta-select" id="ctaTipo">
+          <option value="" disabled selected>Tipo de mascota</option>
+          <option value="Perro">🐶 Perro</option>
+          <option value="Gato">🐱 Gato</option>
+          <option value="Conejo">🐰 Conejo</option>
+          <option value="Ave">🐦 Ave</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+      <button class="btn-white" onclick="handleWaitlist()">Unirme a la lista</button>
     </div>
     <div class="success-msg" id="successMsg">
       ✓ &nbsp; ¡Listo! Te avisamos cuando lancemos.
