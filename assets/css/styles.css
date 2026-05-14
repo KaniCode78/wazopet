@@ -677,6 +677,84 @@
 
   .feature-card:hover { transform: translateY(-4px); }
 
+  /* ─── ADOPTION WIDE CARD ─── */
+  .feature-card--wide {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding: 40px 48px;
+    overflow: hidden;
+  }
+
+  .feature-card-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .feature-adoption-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .adoption-tag {
+    background: #F0FDF4;
+    color: #16A34A;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid #BBF7D0;
+  }
+
+  .feature-card-images {
+    position: relative;
+    flex-shrink: 0;
+    width: 420px;
+    height: 240px;
+  }
+
+  .adoption-img {
+    position: absolute;
+    width: 260px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(13,79,79,0.15);
+  }
+
+  .adoption-img--back {
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .adoption-img--front {
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    box-shadow: 0 16px 48px rgba(13,79,79,0.2);
+  }
+
+  @media (max-width: 860px) {
+    .feature-card--wide {
+      flex-direction: column;
+      padding: 32px;
+    }
+    .feature-card-images {
+      width: 100%;
+      height: 220px;
+    }
+    .adoption-img { width: 55%; height: 180px; }
+  }
+
+  @media (max-width: 480px) {
+    .feature-card-images { height: 180px; }
+    .adoption-img { width: 60%; height: 150px; }
+  }
+
   .feature-icon {
     width: 52px;
     height: 52px;
