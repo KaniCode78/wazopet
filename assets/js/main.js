@@ -14,8 +14,10 @@
   }
 
   // Waitlist
-  function handleWaitlist(inputId) {
-    const input = document.getElementById(inputId);
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyIhQPBC-nVB6TuI-9RT2WWIIy5MsKOJwxupkxSRYXeXdlUnJyN6CrKSfgUPgHNcKM57g/exec';
+
+  function handleWaitlistHero() {
+    const input = document.getElementById('heroEmail');
     const email = input.value.trim();
     const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRx.test(email)) {
@@ -24,13 +26,42 @@
       setTimeout(() => input.style.boxShadow = '', 2000);
       return;
     }
-    // Show success
-    if (inputId === 'ctaEmail') {
-      document.getElementById('ctaForm').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }
+    fetch(SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre: '', correo: email, mascota: '', ciudad: '', tipo: '', origen: 'hero' }),
+    });
     showToast();
     input.value = '';
+  }
+
+  function handleWaitlist() {
+    const nombre  = document.getElementById('ctaNombre').value.trim();
+    const email   = document.getElementById('ctaEmail').value.trim();
+    const mascota = document.getElementById('ctaMascota').value.trim();
+    const ciudad  = document.getElementById('ctaCiudad').value.trim();
+    const tipo    = document.getElementById('ctaTipo').value;
+
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRx.test(email)) {
+      const input = document.getElementById('ctaEmail');
+      input.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.4)';
+      input.focus();
+      setTimeout(() => input.style.boxShadow = '', 2000);
+      return;
+    }
+
+    fetch(SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, correo: email, mascota, ciudad, tipo, origen: 'cta' }),
+    });
+
+    document.getElementById('ctaForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    showToast();
   }
 
   function showToast() {
@@ -52,10 +83,10 @@
 
   // Keyboard enter on inputs
   document.getElementById('heroEmail').addEventListener('keydown', e => {
-    if (e.key === 'Enter') handleWaitlist('heroEmail');
+    if (e.key === 'Enter') handleWaitlistHero();
   });
   document.getElementById('ctaEmail').addEventListener('keydown', e => {
-    if (e.key === 'Enter') handleWaitlist('ctaEmail');
+    if (e.key === 'Enter') handleWaitlist();
   });
 
   // Scroll animations
